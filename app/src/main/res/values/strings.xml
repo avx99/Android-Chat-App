@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Project</string>
+    <string name="welcome">Welcome Back!</string>
+    <string name="ask_for_login">Login to continue</string>
+    <string name="ask_for_creating_new_account">Create a new account</string>
+    <string name="sing_in">Sign in</string>
+    <string name="sing_up">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="creating_new_account">Create account</string>
+    <string name="ask_for_image">Add your image</string>
+    <string name="ask_for_password_confirmation">Confirm Password</string>
+
+
+
+
+
+
+    <string name="name">Name</string>
+
+
+
+
+</resources>
