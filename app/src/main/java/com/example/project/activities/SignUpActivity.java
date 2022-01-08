@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.project.databinding.ActivitySignUpBinding;
+import com.example.project.service.SignUpServiceInterface;
+import com.example.project.service.impl.SignUpService;
 
 public class SignUpActivity extends AppCompatActivity {
     private ActivitySignUpBinding binding;
+    private SignUpServiceInterface signUpService = new SignUpService();
 
 
     @Override
@@ -20,7 +23,11 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void setListeners(){
-        this.binding.textViewToSignIn.setOnClickListener(e ->
-                startActivity(new Intent(getApplicationContext(),SignInActivity.class)));
+        this.binding.textViewToSignIn.setOnClickListener(e -> startActivity(new Intent(getApplicationContext(),SignInActivity.class)));
+        this.binding.buttonSignUp.setOnClickListener(e -> {
+            if(this.signUpService.isValidSignUp(getApplicationContext(),this.binding,"test"))
+                this.signUpService.singUp();
+        });
+
     }
 }

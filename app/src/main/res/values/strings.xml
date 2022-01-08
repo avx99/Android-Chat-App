@@ -10,6 +10,14 @@
     <string name="creating_new_account">Create account</string>
     <string name="ask_for_image">Add your image</string>
     <string name="ask_for_password_confirmation">Confirm Password</string>
+    <string name="select_image">Select your profile image</string>
+    <string name="select_name">Select your name</string>
+    <string name="select_email">Select your email</string>
+    <string name="select_valid_image">Select a valid image</string>
+    <string name="enter_valid_email">Enter a valid email</string>
+    <string name="select_password">Enter your password</string>
+    <string name="confirm_password">Confirm your password</string>
+    <string name="match_password">Password does not match</string>
 
 
 
