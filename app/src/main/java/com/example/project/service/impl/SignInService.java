@@ -2,6 +2,8 @@ package com.example.project.service.impl;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
@@ -10,10 +12,18 @@ import com.example.project.R;
 import com.example.project.activities.HomeActivity;
 import com.example.project.databinding.ActivitySignInBinding;
 import com.example.project.entity.User;
+import com.example.project.exceptions.NotAllowedToLoggIn;
 import com.example.project.repository.UserRepo;
+import com.example.project.service.OnTransactionListReceivedListener;
 import com.example.project.service.SignInServiceInterface;
 
 public class SignInService implements SignInServiceInterface {
+
+    OnTransactionListReceivedListener ts;
+    public SignInService(OnTransactionListReceivedListener ts){
+        this.ts=ts;
+
+    }
 
     private UserRepo userRepo=new UserRepo();
     @Override
@@ -39,9 +49,10 @@ public class SignInService implements SignInServiceInterface {
     }
 
     @Override
-    public void singIn(Context applicationContext, ActivitySignInBinding binding) {
+    public void singIn(Context applicationContext, ActivitySignInBinding binding,
+                       SharedPreferences.Editor  editor){
         this.loading(true,binding);
-        this.userRepo.signIn(applicationContext,this.getUser(binding),binding);
+        this.userRepo.signIn(applicationContext,this.getUser(binding),binding,editor,ts);
     }
 
     @Override
@@ -56,6 +67,7 @@ public class SignInService implements SignInServiceInterface {
             binding.buttonSignIn.setVisibility(View.INVISIBLE);
         }
         else{
+            binding.buttonSignIn.setVisibility(View.VISIBLE);
             binding.progressBarSignIn.setVisibility(View.INVISIBLE);
         }
     }

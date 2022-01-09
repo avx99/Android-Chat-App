@@ -1,6 +1,7 @@
 package com.example.project.repository;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -10,6 +11,8 @@ import android.widget.Toast;
 import com.example.project.R;
 import com.example.project.databinding.ActivitySignInBinding;
 import com.example.project.entity.User;
+import com.example.project.exceptions.NotAllowedToLoggIn;
+import com.example.project.service.OnTransactionListReceivedListener;
 import com.example.project.utils.CONST;
 
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -50,31 +53,24 @@ public class UserRepo {
         }
     }
 
-    public void signIn(Context applicationContext, User user,ActivitySignInBinding binding){
+    public void signIn(Context applicationContext, User user, ActivitySignInBinding binding,
+                       SharedPreferences.Editor  editor, OnTransactionListReceivedListener listener){
 
         db.collection(CONST.KEY_COLLECTION_USERS)
                 .whereEqualTo(CONST.KEY_EMAIL,user.getEmail())
                 .whereEqualTo(CONST.KEY_PASSWORD,user.getPassword())
                 .get()
                 .addOnCompleteListener(task -> {
+
                     if(task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0){
-                        DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
-
-                        mPrefs = PreferenceManager.getDefaultSharedPreferences(applicationContext);
-                        mPrefsEditor = mPrefs.edit();
-                        mPrefsEditor.putBoolean(CONST.KEY_IS_SIGNED_IN,true);
-                        mPrefsEditor.putString(CONST.KEY_USER_ID,documentSnapshot.getId());
-                        mPrefsEditor.putString(CONST.KEY_NAME,documentSnapshot.getString(CONST.KEY_NAME));
-                        mPrefsEditor.putString(CONST.KEY_EMAIL,documentSnapshot.getString(CONST.KEY_EMAIL));
-                        mPrefsEditor.putString(CONST.KEY_IMAGE,documentSnapshot.getString(CONST.KEY_IMAGE));
-                        mPrefsEditor.commit();
+                        listener.onTransactionListReceived(task);
+                    }else{
+                        listener.onTransactionListFailed(task);
+                    }
 
 
-                        Toast.makeText(applicationContext, applicationContext.getString(R.string.logged), Toast.LENGTH_SHORT).show();
-                    }else
-                        loading(false,binding);
-                        Toast.makeText(applicationContext, applicationContext.getString(R.string.not_logged), Toast.LENGTH_SHORT).show();
                 });
+
 
     }
 
