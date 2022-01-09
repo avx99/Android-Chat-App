@@ -4,10 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import com.example.project.R;
 import com.example.project.databinding.ActivitySignUpBinding;
+import com.example.project.entity.User;
+import com.example.project.repository.UserRepo;
 import com.example.project.service.SignUpServiceInterface;
 import com.example.project.service.impl.SignUpService;
+import com.example.project.utils.CONST;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 public class SignUpActivity extends AppCompatActivity {
     private ActivitySignUpBinding binding;
@@ -25,8 +33,11 @@ public class SignUpActivity extends AppCompatActivity {
     private void setListeners(){
         this.binding.textViewToSignIn.setOnClickListener(e -> startActivity(new Intent(getApplicationContext(),SignInActivity.class)));
         this.binding.buttonSignUp.setOnClickListener(e -> {
-            if(this.signUpService.isValidSignUp(getApplicationContext(),this.binding,"test"))
-                this.signUpService.singUp();
+            if(this.signUpService.isValidSignUp(getApplicationContext(),this.binding,"test")){
+                this.signUpService.singUp(getApplicationContext(),binding);
+//                this.signUpService.loading(false,binding);
+            }
+
         });
 
     }

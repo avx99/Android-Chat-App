@@ -18,15 +18,12 @@
     <string name="select_password">Enter your password</string>
     <string name="confirm_password">Confirm your password</string>
     <string name="match_password">Password does not match</string>
-
-
-
-
+    <string name="user_created_ok">User is created</string>
+    <string name="logged">Logged in</string>
+    <string name="not_logged">Email or Password is not correct</string>
 
 
     <string name="name">Name</string>
-
-
 
 
 </resources>

@@ -3,12 +3,19 @@ package com.example.project.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
 
 import com.example.project.databinding.ActivitySignInBinding;
+import com.example.project.entity.User;
+import com.example.project.repository.UserRepo;
+import com.example.project.service.SignInServiceInterface;
+import com.example.project.service.impl.SignInService;
+import com.example.project.utils.CONST;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -16,6 +23,11 @@ import java.util.HashMap;
 
 public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
+    private static SharedPreferences mPrefs;
+    private static SharedPreferences.Editor mPrefsEditor;
+
+    private SignInServiceInterface signInService = new SignInService();
+    private UserRepo userRepo = new UserRepo();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,24 +40,13 @@ public class SignInActivity extends AppCompatActivity {
     private void setListeners(){
         this.binding.textViewCreateAccount.setOnClickListener(e ->
                     startActivity(new Intent(getApplicationContext(),SignUpActivity.class)));
-        this.binding.buttonSignIn.setOnClickListener(e ->
-                        addDataToFirestore()
+        this.binding.buttonSignIn.setOnClickListener(e ->{
+                        if(this.signInService.isValidSignIn(getApplicationContext(),binding)){
+                            this.signInService.singIn(getApplicationContext(),binding);
+                        }
+                    }
                 );
     }
 
-    private void addDataToFirestore(){
-        FirebaseFirestore database = FirebaseFirestore.getInstance();
-        HashMap<String , Object> data = new HashMap<>();
-        data.put("first_name","oussama");
-        data.put("last_name","abouzid");
-        database.collection("user")
-                .add(data)
-                .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(getApplicationContext(),"data insered",Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(exception -> {
-                    Toast.makeText(getApplicationContext(),exception.getMessage(),Toast.LENGTH_SHORT).show();
-        });
 
-    }
 }
