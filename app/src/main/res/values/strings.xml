@@ -22,6 +22,7 @@
     <string name="logged">Logged in</string>
     <string name="not_logged">Email or Password is not correct</string>
     <string name="logIn_exception">Not allowed to log in</string>
+    <string name="pick_user">Choose a user</string>
 
 
     <string name="name">Name</string>
