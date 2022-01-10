@@ -49,10 +49,9 @@ public class SignInService implements SignInServiceInterface {
     }
 
     @Override
-    public void singIn(Context applicationContext, ActivitySignInBinding binding,
-                       SharedPreferences.Editor  editor){
+    public void singIn(ActivitySignInBinding binding){
         this.loading(true,binding);
-        this.userRepo.signIn(applicationContext,this.getUser(binding),binding,editor,ts);
+        this.userRepo.signIn(this.getUser(binding),ts);
     }
 
     @Override

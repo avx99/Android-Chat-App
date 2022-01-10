@@ -16,6 +16,8 @@ public class User implements Parcelable {
         this.image = image;
     }
 
+    public User(){}
+
     public String getName() {
         return name;
     }

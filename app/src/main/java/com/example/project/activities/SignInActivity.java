@@ -67,7 +67,7 @@ public class SignInActivity extends AppCompatActivity implements OnTransactionLi
                     Log.d("ISLOGGED image", sharedpreferences.getString(CONST.KEY_IMAGE, "walo"));
 
                         if(this.signInService.isValidSignIn(getApplicationContext(),binding)){
-                            this.signInService.singIn(getApplicationContext(),binding, editor);
+                            this.signInService.singIn(binding);
                         }
                     }
                 );
@@ -102,7 +102,7 @@ public class SignInActivity extends AppCompatActivity implements OnTransactionLi
     }
 
     @Override
-    public ArrayList<User> onTransactionGetUsers(Task<QuerySnapshot> task) {
-        return null;
+    public void onTransactionGetUsers(Task<QuerySnapshot> task) {
+
     }
 }

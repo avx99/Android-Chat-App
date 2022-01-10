@@ -10,7 +10,7 @@ import com.example.project.exceptions.NotAllowedToLoggIn;
 
 public interface SignInServiceInterface {
     Boolean isValidSignIn(Context applicationContext, ActivitySignInBinding binding);
-    void singIn(Context applicationContext, ActivitySignInBinding binding, SharedPreferences.Editor  sharedpreferences);
+    void singIn(ActivitySignInBinding binding);
     void showToast(Context applicationContext, String message);
     void loading(Boolean isLoading,ActivitySignInBinding binding);
 

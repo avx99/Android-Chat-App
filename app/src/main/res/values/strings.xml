@@ -23,6 +23,8 @@
     <string name="not_logged">Email or Password is not correct</string>
     <string name="logIn_exception">Not allowed to log in</string>
     <string name="pick_user">Choose a user</string>
+    <string name="fetch_failed">Fetching users failed</string>
+    <string name="no_users">There is no users to fetch</string>
 
 
     <string name="name">Name</string>

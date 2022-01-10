@@ -53,8 +53,7 @@ public class UserRepo {
         }
     }
 
-    public void signIn(Context applicationContext, User user, ActivitySignInBinding binding,
-                       SharedPreferences.Editor  editor, OnTransactionListReceivedListener listener){
+    public void signIn(User user,OnTransactionListReceivedListener listener){
 
         db.collection(CONST.KEY_COLLECTION_USERS)
                 .whereEqualTo(CONST.KEY_EMAIL,user.getEmail())
@@ -72,6 +71,21 @@ public class UserRepo {
                 });
 
 
+    }
+
+    public void getUsers(OnTransactionListReceivedListener listener){
+        db.collection(CONST.KEY_COLLECTION_USERS)
+                .get()
+                .addOnCompleteListener(task -> {
+
+                    if(task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0){
+                        listener.onTransactionGetUsers(task);
+                    }else{
+                        listener.onTransactionListFailed(task);
+                    }
+
+
+                });
     }
 
 }

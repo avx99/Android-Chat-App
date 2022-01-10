@@ -9,5 +9,5 @@ import java.util.ArrayList;
 public interface OnTransactionListReceivedListener {
     void onTransactionListReceived(Task<QuerySnapshot> task);
     void onTransactionListFailed(Task<QuerySnapshot> task);
-    ArrayList<User> onTransactionGetUsers(Task<QuerySnapshot> task);
+    void onTransactionGetUsers(Task<QuerySnapshot> task);
 }

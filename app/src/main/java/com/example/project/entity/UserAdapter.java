@@ -34,8 +34,8 @@ public class UserAdapter extends ArrayAdapter<User> {
         TextView name = convertView.findViewById(R.id.textViewContainerName);
 
 
-        name.setText(getItem(position).getEmail());
-        sub.setText(getItem(position).getPassword());
+        name.setText(getItem(position).getName());
+        sub.setText(getItem(position).getEmail());
 
         return convertView;
     }
