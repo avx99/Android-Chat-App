@@ -9,10 +9,13 @@ import com.example.project.R;
 import com.example.project.databinding.ActivityUsersListBinding;
 import com.example.project.entity.User;
 import com.example.project.entity.UserAdapter;
+import com.example.project.service.OnTransactionListReceivedListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class UsersListActivity extends AppCompatActivity {
+public class UsersListActivity extends AppCompatActivity implements OnTransactionListReceivedListener {
     private ActivityUsersListBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,5 +47,20 @@ public class UsersListActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
+    }
+
+    @Override
+    public void onTransactionListReceived(Task<QuerySnapshot> task) {
+
+    }
+
+    @Override
+    public void onTransactionListFailed(Task<QuerySnapshot> task) {
+
+    }
+
+    @Override
+    public ArrayList<User> onTransactionGetUsers(Task<QuerySnapshot> task) {
+        return null;
     }
 }

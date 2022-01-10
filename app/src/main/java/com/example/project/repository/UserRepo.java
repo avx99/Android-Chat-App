@@ -74,15 +74,4 @@ public class UserRepo {
 
     }
 
-    public User getUserByEmail(User user){
-        List<DocumentSnapshot> lst = db.collection(CONST.KEY_COLLECTION_USERS)
-                .whereEqualTo(CONST.KEY_EMAIL,user.getEmail())
-                .get()
-                .getResult()
-                .getDocuments();
-        for(int i = 0;i < lst.size();i++){
-            Log.d("LSTSNP",lst.get(i).toString());
-        }
-        return null;
-    }
 }

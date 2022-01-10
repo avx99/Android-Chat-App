@@ -26,6 +26,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -98,5 +99,10 @@ public class SignInActivity extends AppCompatActivity implements OnTransactionLi
     public void onTransactionListFailed(Task<QuerySnapshot> task) {
         Toast.makeText(this, this.getString(R.string.not_logged), Toast.LENGTH_SHORT).show();
         signInService.loading(false,binding);
+    }
+
+    @Override
+    public ArrayList<User> onTransactionGetUsers(Task<QuerySnapshot> task) {
+        return null;
     }
 }
