@@ -42,24 +42,6 @@ public class HomeActivity extends AppCompatActivity implements OnTransactionList
         homeService.loading(true,binding);
         homeService.getUser(currentId);
 
-//            for(int i = 0;i<lst.size();i++){
-//                Log.d("list : " , lst.get(i));
-//            }
-
-//        ArrayList<User> lst = new ArrayList<>();
-//        lst.add(new User("oussama@usms.com","1235"));
-//        lst.add(new User("badr@usp.ma","de"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-
-//        UserAdapter userAdapter = new UserAdapter(this,R.layout.item_container_items,lst);
-//        binding.ListView.setAdapter(userAdapter);
 
         setListeners();
     }
@@ -101,9 +83,7 @@ public class HomeActivity extends AppCompatActivity implements OnTransactionList
             user.setEmail(queryDocumentSnapshot.getString(CONST.KEY_EMAIL));
             user.setImage(queryDocumentSnapshot.getString(CONST.KEY_IMAGE));
             user.setName(queryDocumentSnapshot.getString(CONST.KEY_NAME));
-            Log.d("xxx",user.toString());
-
-                users.add(user);
+            users.add(user);
         }
         if(users.size() > 0){
 
@@ -134,9 +114,8 @@ public class HomeActivity extends AppCompatActivity implements OnTransactionList
         }
         else {
             homeService.loading(false,binding);
-            homeService.showToast(getApplicationContext(),getApplicationContext().getString(R.string.no_users));
+            homeService.showToast(getApplicationContext(),getApplicationContext().getString(R.string.no_contacts));
         }
 
-//        List<String> lst = (List<String>) documentSnapshot.get(CONST.KEY_CONTACTS);
     }
 }
