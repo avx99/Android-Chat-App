@@ -1,20 +1,15 @@
 package com.example.project.service.impl;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.project.R;
-import com.example.project.activities.HomeActivity;
 import com.example.project.databinding.ActivitySignInBinding;
 import com.example.project.entity.User;
-import com.example.project.exceptions.NotAllowedToLoggIn;
 import com.example.project.repository.UserRepo;
-import com.example.project.service.OnTransactionListReceivedListener;
+import com.example.project.listener.OnTransactionListReceivedListener;
 import com.example.project.service.SignInServiceInterface;
 
 public class SignInService implements SignInServiceInterface {

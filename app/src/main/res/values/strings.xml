@@ -25,6 +25,7 @@
     <string name="pick_user">Choose a user</string>
     <string name="fetch_failed">Fetching users failed</string>
     <string name="no_users">There is no users to fetch</string>
+    <string name="add_contact"> added to your contacts</string>
 
 
     <string name="name">Name</string>

@@ -1,21 +1,18 @@
 package com.example.project.repository;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.project.R;
 import com.example.project.databinding.ActivitySignInBinding;
 import com.example.project.entity.User;
-import com.example.project.exceptions.NotAllowedToLoggIn;
-import com.example.project.service.OnTransactionListReceivedListener;
+import com.example.project.listener.OnTransactionListReceivedListener;
 import com.example.project.utils.CONST;
 
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldPath;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -83,9 +80,39 @@ public class UserRepo {
                     }else{
                         listener.onTransactionListFailed(task);
                     }
-
-
                 });
+    }
+
+    public void addUserToContacts(String currentId,String id) {
+        db.collection(CONST.KEY_COLLECTION_USERS)
+                .document(currentId)
+                .update(CONST.KEY_CONTACTS, FieldValue.arrayUnion(id));
+    }
+
+    public void getUser(OnTransactionListReceivedListener listener,String currentId){
+        db.collection(CONST.KEY_COLLECTION_USERS)
+                .document(currentId)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful() && task.getResult() != null){
+                        listener.onTransactionGetUser(task);
+                    }else{
+                        listener.onTransactionListFailedGettingUser(task);
+                    }
+                });
+    }
+
+    public void getUsersByIDs(OnTransactionListReceivedListener listener, List<String> ids){
+            db.collection(CONST.KEY_COLLECTION_USERS)
+                    .whereIn(FieldPath.documentId(), ids)
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if(task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0){
+                            listener.onTransactionGetUsers(task);
+                        }else{
+                            listener.onTransactionListFailed(task);
+                        }
+                    });
     }
 
 }

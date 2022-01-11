@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import com.example.project.databinding.ActivityUsersListBinding;
 import com.example.project.repository.UserRepo;
-import com.example.project.service.OnTransactionListReceivedListener;
+import com.example.project.listener.OnTransactionListReceivedListener;
 import com.example.project.service.UsersListServiceInterface;
 
 public class UsersListService implements UsersListServiceInterface {
@@ -38,5 +38,10 @@ public class UsersListService implements UsersListServiceInterface {
     @Override
     public void getUsers() {
         userRepo.getUsers(ts);
+    }
+
+    @Override
+    public void addUserToContacts(String currentId,String id) {
+        userRepo.addUserToContacts(currentId,id);
     }
 }

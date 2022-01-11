@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable {
+    private String id;
     private String name;
     private String email;
     private String password;
@@ -17,6 +18,14 @@ public class User implements Parcelable {
     }
 
     public User(){}
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

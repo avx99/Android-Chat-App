@@ -39,4 +39,5 @@ public class UserAdapter extends ArrayAdapter<User> {
 
         return convertView;
     }
+
 }

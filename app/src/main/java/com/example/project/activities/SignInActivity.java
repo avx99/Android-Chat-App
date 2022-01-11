@@ -6,28 +6,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
 
-import com.bumptech.glide.request.ThumbnailRequestCoordinator;
 import com.example.project.R;
 import com.example.project.databinding.ActivitySignInBinding;
-import com.example.project.entity.User;
-import com.example.project.exceptions.NotAllowedToLoggIn;
-import com.example.project.repository.UserRepo;
-import com.example.project.service.OnTransactionListReceivedListener;
+import com.example.project.listener.OnTransactionListReceivedListener;
 import com.example.project.service.SignInServiceInterface;
 import com.example.project.service.impl.SignInService;
 import com.example.project.utils.CONST;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class SignInActivity extends AppCompatActivity implements OnTransactionListReceivedListener {
@@ -102,7 +93,17 @@ public class SignInActivity extends AppCompatActivity implements OnTransactionLi
     }
 
     @Override
+    public void onTransactionListFailedGettingUser(Task<DocumentSnapshot> task) {
+
+    }
+
+    @Override
     public void onTransactionGetUsers(Task<QuerySnapshot> task) {
+
+    }
+
+    @Override
+    public void onTransactionGetUser(Task<DocumentSnapshot> task) {
 
     }
 }
