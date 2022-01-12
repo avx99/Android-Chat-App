@@ -27,6 +27,7 @@
     <string name="no_users">There is no users to fetch</string>
     <string name="add_contact"> added to your contacts</string>
     <string name="no_contacts"> There is no contact</string>
+    <string name="cant_send_message">Can not send your message</string>
 
 
     <string name="name">Name</string>

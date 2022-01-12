@@ -1,4 +1,4 @@
-package com.example.project.entity;
+package com.example.project.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,17 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.project.R;
+import com.example.project.entity.Chat;
+import com.example.project.entity.User;
 
 import java.util.ArrayList;
 
-public class UserAdapter extends ArrayAdapter<User> {
+public class ChatAdapter extends ArrayAdapter<Chat> {
     private Context mContext;
     private int mResource;
-    public UserAdapter(@NonNull Context context, int resource, @NonNull ArrayList<User> objects) {
+
+    public ChatAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Chat> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
     }
+
 
     @NonNull
     @Override
@@ -30,14 +34,13 @@ public class UserAdapter extends ArrayAdapter<User> {
 
         convertView = layoutInflater.inflate(mResource,parent,false);
 
-        TextView sub = convertView.findViewById(R.id.textViewContainerSub);
-        TextView name = convertView.findViewById(R.id.textViewContainerName);
+        TextView message = convertView.findViewById(R.id.textViewSentMessage);
+        TextView date = convertView.findViewById(R.id.textViewDate);
 
 
-        name.setText(getItem(position).getName());
-        sub.setText(getItem(position).getEmail());
+        message.setText(getItem(position).getMessage());
+        date.setText(getItem(position).getMessageDate().toString());
 
         return convertView;
     }
-
 }

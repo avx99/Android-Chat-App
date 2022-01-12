@@ -6,13 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.example.project.R;
 import com.example.project.databinding.ActivityHomeBinding;
 import com.example.project.entity.User;
-import com.example.project.entity.UserAdapter;
+import com.example.project.adapter.UserAdapter;
 import com.example.project.listener.OnTransactionListReceivedListener;
 import com.example.project.service.HomeServiceInterface;
 import com.example.project.service.impl.HomeService;
@@ -23,7 +21,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements OnTransactionListReceivedListener {

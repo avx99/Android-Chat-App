@@ -17,6 +17,10 @@ public class Chat implements Serializable {
         this.messageDate = messageDate;
     }
 
+    public Chat(){
+
+    }
+
     public String getCurrentUserId() {
         return currentUserId;
     }

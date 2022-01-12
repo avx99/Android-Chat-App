@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.example.project.R;
 import com.example.project.databinding.ActivityUsersListBinding;
 import com.example.project.entity.User;
-import com.example.project.entity.UserAdapter;
+import com.example.project.adapter.UserAdapter;
 import com.example.project.listener.OnTransactionListReceivedListener;
 import com.example.project.service.UsersListServiceInterface;
 import com.example.project.service.impl.UsersListService;
@@ -35,20 +35,6 @@ public class UsersListActivity extends AppCompatActivity implements OnTransactio
         setContentView(this.binding.getRoot());
         usersListService.loading(true,binding);
         usersListService.getUsers();
-
-//        ArrayList<User> lst = new ArrayList<>();
-//        lst.add(new User("aa@zz.cc","1235"));
-//        lst.add(new User("bb@zz.cc","de"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        lst.add(new User("cc@zz.cc","cee54"));
-//        UserAdapter userAdapter = new UserAdapter(this,R.layout.item_container_items,lst);
-//        binding.ListViewPickUser.setAdapter(userAdapter);
 
         setListeners();
     }

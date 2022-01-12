@@ -1,10 +1,11 @@
 package com.example.project.service;
 
+import android.content.Context;
+
 import com.example.project.databinding.ActivityChatBinding;
-import com.example.project.entity.Chat;
+
 
 public interface ChatServiceInterface {
-    void sendMessage(Chat message);
-    void showMessages();
-    Chat getMessage(ActivityChatBinding binding);
+    void sendMessage(Context applicationContext, ActivityChatBinding binding, String currentId, String senderId);
+    void showMessages(String currentId,String chatId);
 }

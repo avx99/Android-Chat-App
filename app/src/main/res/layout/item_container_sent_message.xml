@@ -7,15 +7,26 @@
 
     <TextView
         android:id="@+id/textViewSentMessage"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="311dp"
+        android:layout_height="83dp"
         android:layout_marginStart="101dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@color/primary"
+        android:background="@color/input_background"
         android:text="how are you ?"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="259dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.631"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSentMessage" />
 </androidx.constraintlayout.widget.ConstraintLayout>
