@@ -3,7 +3,7 @@ package com.example.project.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Chat implements Serializable {
+public class Chat implements Serializable, Comparable<Chat> {
     private String currentUserId;
     private String chatUserId;
     private String message;
@@ -51,5 +51,12 @@ public class Chat implements Serializable {
 
     public void setMessageDate(Date messageDate) {
         this.messageDate = messageDate;
+    }
+
+
+
+    @Override
+    public int compareTo(Chat chat) {
+        return getMessageDate().compareTo(chat.getMessageDate());
     }
 }

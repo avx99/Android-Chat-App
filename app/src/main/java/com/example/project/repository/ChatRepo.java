@@ -35,6 +35,11 @@ public class ChatRepo {
 
     public void createMessage(Chat chat, Context applicationContext,ActivityChatBinding binding){
         loading(true,binding);
+        if(chat.getMessage() == null || chat.getMessage().isEmpty()){
+            loading(false,binding);
+            Toast.makeText(applicationContext, applicationContext.getString(R.string.empty_message), Toast.LENGTH_SHORT).show();
+            return;
+        }
         HashMap<String , Object> data = new HashMap<>();
         data.put(CONST.MESSAGE_CURRENT_USER,chat.getCurrentUserId());
         data.put(CONST.MESSAGE_CHAT_USER,chat.getChatUserId());
@@ -48,6 +53,7 @@ public class ChatRepo {
                 .addOnFailureListener(exception -> {
                     Toast.makeText(applicationContext, applicationContext.getString(R.string.cant_send_message), Toast.LENGTH_SHORT).show();
                 });
+
     }
 
     public void getMessages(OnTransactionListReceivedListener listener,String currentId,String chatId){

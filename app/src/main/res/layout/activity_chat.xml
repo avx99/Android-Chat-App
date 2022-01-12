@@ -19,20 +19,12 @@
         android:id="@+id/textViewUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="24dp"
         android:text="user name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/_dynamic"
         app:layout_constraintStart_toEndOf="@+id/buttonBackHome"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewUserState"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="offline"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewUserName"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -40,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
         android:text="Back"
         app:layout_constraintBottom_toTopOf="@+id/_dynamic"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,4 +73,16 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonSendMessage"
         app:layout_constraintHorizontal_bias="0.465"
         app:layout_constraintStart_toEndOf="@+id/message" />
+
+    <ProgressBar
+        android:id="@+id/progressBarChatConversation"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toEndOf="@+id/textViewUserName"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

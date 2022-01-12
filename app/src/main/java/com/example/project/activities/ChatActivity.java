@@ -3,6 +3,7 @@ package com.example.project.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -21,6 +22,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class ChatActivity extends AppCompatActivity implements OnTransactionListReceivedListener {
     private ActivityChatBinding binding;
@@ -29,6 +32,7 @@ public class ChatActivity extends AppCompatActivity implements OnTransactionList
     private String currentId;
     private SharedPreferences sharedpreferences;
     private ArrayList<Chat> messages = new ArrayList<>();
+    private ChatAdapter chatAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ public class ChatActivity extends AppCompatActivity implements OnTransactionList
         currentId = sharedpreferences.getString(CONST.KEY_USER_ID,"");
         this.chatUser = (User) getIntent().getSerializableExtra("chatUser");
 
+        chatService.loading(true,binding);
         this.chatService.showMessages(currentId,chatUser.getId());
         this.binding.textViewUserName.setText(chatUser.getName());
 
@@ -54,7 +59,14 @@ public class ChatActivity extends AppCompatActivity implements OnTransactionList
         this.binding.buttonSendMessage.setOnClickListener(e -> {
             this.chatService.sendMessage(getApplicationContext(),binding,currentId,chatUser.getId());
             this.binding.message.setText("");
+            chatAdapter.notifyDataSetChanged();
+
         });
+        this.binding.buttonBackHome.setOnClickListener((e -> {
+            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }));
     }
 
     @Override
@@ -70,23 +82,22 @@ public class ChatActivity extends AppCompatActivity implements OnTransactionList
 
 
             this.messages.add(message);
+
         }
+
         if(this.messages.size() > 0){
-
-            ChatAdapter chatAdapter = new ChatAdapter(this, R.layout.item_container_sent_message,this.messages);
+            Collections.sort(messages);
+            chatAdapter = new ChatAdapter(this, R.layout.item_container_sent_message,this.messages);
             binding.messagesList.setAdapter(chatAdapter);
-//            ch.loading(true,binding);
-        }
-        else{
-//            homeService.showToast(getApplicationContext(),getApplicationContext().getString(R.string.no_users));
-        }
-//        homeService.loading(false,binding);
+            this.chatService.loading(false,binding);
 
+        }
     }
 
     @Override
     public void onTransactionListFailed(Task<QuerySnapshot> task) {
-
+        this.chatService.loading(false,binding);
+        this.chatService.showToast(getApplicationContext(),getApplicationContext().getString(R.string.no_chat));
     }
 
     @Override
