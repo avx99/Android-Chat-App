@@ -11,4 +11,13 @@ public class CONST {
     public static final String KEY_IMAGE = "image";
     public static final String USER_PREF = "user_pref";
 
+
+    public static final String KEY_COLLECTION_MESSAGES = "messages";
+    public static final String MESSAGE_CURRENT_USER = "currentUserId";
+    public static final String MESSAGE_CHAT_USER = "chatUserId";
+    public static final String MESSAGE_BODY = "message";
+    public static final String MESSAGE_DATE = "messageDate";
+
+
+
 }

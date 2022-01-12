@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.project.R;
 import com.example.project.databinding.ActivityHomeBinding;
@@ -42,7 +43,6 @@ public class HomeActivity extends AppCompatActivity implements OnTransactionList
         homeService.loading(true,binding);
         homeService.getUser(currentId);
 
-
         setListeners();
     }
     private void setListeners(){
@@ -56,6 +56,12 @@ public class HomeActivity extends AppCompatActivity implements OnTransactionList
         this.binding.buttonAddContact.setOnClickListener(e -> {
             Intent intent = new Intent(getApplicationContext(), UsersListActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        });
+        this.binding.ListView.setOnItemClickListener((adapterView, view, i, l) -> {
+            User chatUser = users.get(i);
+            Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+            intent.putExtra("chatUser",chatUser);
             startActivity(intent);
         });
     }

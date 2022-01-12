@@ -3,7 +3,9 @@ package com.example.project.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class User implements Parcelable {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String id;
     private String name;
     private String email;
@@ -78,13 +80,13 @@ public class User implements Parcelable {
         this.email = email;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-
-    }
+//    @Override
+//    public int describeContents() {
+//        return 0;
+//    }
+//
+//    @Override
+//    public void writeToParcel(Parcel parcel, int i) {
+//
+//    }
 }
