@@ -40,11 +40,18 @@ public class ChatRepo {
             Toast.makeText(applicationContext, applicationContext.getString(R.string.empty_message), Toast.LENGTH_SHORT).show();
             return;
         }
+
+        if(chat.stringCompare(chat.getCurrentUserId(),chat.getChatUserId()) > 0)
+            chat.setSelector(chat.getCurrentUserId() + chat.getChatUserId());
+        else
+            chat.setSelector(chat.getChatUserId() + chat.getCurrentUserId());
+
         HashMap<String , Object> data = new HashMap<>();
         data.put(CONST.MESSAGE_CURRENT_USER,chat.getCurrentUserId());
         data.put(CONST.MESSAGE_CHAT_USER,chat.getChatUserId());
         data.put(CONST.MESSAGE_BODY,chat.getMessage());
         data.put(CONST.MESSAGE_DATE,chat.getMessageDate());
+        data.put(CONST.MESSAGE_SELECTOR,chat.getSelector());
         db.collection(CONST.KEY_COLLECTION_MESSAGES).add(data)
                 .addOnSuccessListener(documentReference -> {
                     loading(false,binding);
@@ -56,10 +63,9 @@ public class ChatRepo {
 
     }
 
-    public void getMessages(OnTransactionListReceivedListener listener,String currentId,String chatId){
+    public void getMessages(OnTransactionListReceivedListener listener,String selector){
         db.collection(CONST.KEY_COLLECTION_MESSAGES)
-                .whereEqualTo(CONST.MESSAGE_CURRENT_USER,currentId)
-                .whereEqualTo(CONST.MESSAGE_CHAT_USER,chatId)
+                .whereEqualTo(CONST.MESSAGE_SELECTOR,selector)
                 .get()
                 .addOnCompleteListener(task -> {
 

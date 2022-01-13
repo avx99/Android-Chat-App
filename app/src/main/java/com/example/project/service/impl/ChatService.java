@@ -31,7 +31,12 @@ public class ChatService implements ChatServiceInterface {
 
     @Override
     public void showMessages(String currentId, String chatId) {
-        this.chatRepo.getMessages(ts, currentId, chatId);
+        String selector = "";
+        if(stringCompare(currentId,chatId) > 0)
+            selector = currentId + chatId;
+        else
+            selector = chatId + currentId;
+        this.chatRepo.getMessages(ts, selector);
     }
     @Override
     public Chat getMessage(ActivityChatBinding binding, String currentId,String senderId) {
@@ -52,5 +57,28 @@ public class ChatService implements ChatServiceInterface {
     @Override
     public void showToast(Context applicationContext, String message) {
         Toast.makeText(applicationContext,message,Toast.LENGTH_SHORT).show();
+    }
+
+    public int stringCompare(String str1, String str2) {
+        int l1 = str1.length();
+        int l2 = str2.length();
+        int lmin = Math.min(l1, l2);
+
+        for (int i = 0; i < lmin; i++) {
+            int str1_ch = (int)str1.charAt(i);
+            int str2_ch = (int)str2.charAt(i);
+
+            if (str1_ch != str2_ch) {
+                return str1_ch - str2_ch;
+            }
+        }
+
+        if (l1 != l2) {
+            return l1 - l2;
+        }
+
+        else {
+            return 0;
+        }
     }
 }

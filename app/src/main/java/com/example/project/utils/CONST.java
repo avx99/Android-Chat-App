@@ -17,6 +17,7 @@ public class CONST {
     public static final String MESSAGE_CHAT_USER = "chatUserId";
     public static final String MESSAGE_BODY = "message";
     public static final String MESSAGE_DATE = "messageDate";
+    public static final String MESSAGE_SELECTOR = "selector";
 
 
 

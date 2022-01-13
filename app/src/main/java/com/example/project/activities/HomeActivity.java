@@ -36,7 +36,8 @@ public class HomeActivity extends AppCompatActivity implements OnTransactionList
         setContentView(this.binding.getRoot());
         SharedPreferences sharedpreferences = getSharedPreferences(CONST.USER_PREF, Context.MODE_PRIVATE);
         String currentId = sharedpreferences.getString(CONST.KEY_USER_ID,"");
-
+        String currentName = sharedpreferences.getString(CONST.KEY_NAME,"");
+        this.binding.textViewContainerName.setText(currentName);
         homeService.loading(true,binding);
         homeService.getUser(currentId);
 

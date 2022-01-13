@@ -10,6 +10,7 @@ import com.google.firebase.messaging.RemoteMessage;
 public class MessagingService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NonNull String token) {
+
         super.onNewToken(token);
     }
 
