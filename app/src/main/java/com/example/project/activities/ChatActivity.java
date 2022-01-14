@@ -50,6 +50,8 @@ public class ChatActivity extends AppCompatActivity implements OnTransactionList
 
 
 
+
+
         setContentView(this.binding.getRoot());
 
         setListeners();
@@ -59,6 +61,8 @@ public class ChatActivity extends AppCompatActivity implements OnTransactionList
         this.binding.buttonSendMessage.setOnClickListener(e -> {
             this.chatService.sendMessage(getApplicationContext(),binding,currentId,chatUser.getId());
             this.binding.message.setText("");
+            this.messages.clear();
+            this.chatService.showMessages(currentId,chatUser.getId());
 //            chatAdapter.notifyDataSetChanged();
 
         });

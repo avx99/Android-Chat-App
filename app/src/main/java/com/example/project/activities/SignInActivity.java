@@ -33,8 +33,8 @@ public class SignInActivity extends AppCompatActivity implements OnTransactionLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.binding = ActivitySignInBinding.inflate(getLayoutInflater());
-        this.sharedPreferences = getSharedPreferences(CONST.USER_PREF,Context.MODE_PRIVATE);
-        this.editor = this.sharedPreferences.edit();
+        sharedPreferences = getSharedPreferences(CONST.USER_PREF,Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
         sharedPreferences = getSharedPreferences(CONST.USER_PREF, Context.MODE_PRIVATE);
         if(sharedPreferences.getBoolean(CONST.KEY_IS_SIGNED_IN, false)){
             Intent intent = new Intent(getApplicationContext(), HomeActivity.class);

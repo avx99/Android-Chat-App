@@ -35,6 +35,9 @@ public class SignUpActivity extends AppCompatActivity {
         this.binding.buttonSignUp.setOnClickListener(e -> {
             if(this.signUpService.isValidSignUp(getApplicationContext(),this.binding,"test")){
                 this.signUpService.singUp(getApplicationContext(),binding);
+                Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
 //                this.signUpService.loading(false,binding);
             }
 
